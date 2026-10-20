@@ -6,7 +6,7 @@ package logic
 import (
 	"context"
 	"errors"
-	"jwt/commom"
+	"jwt/common"
 
 	"jwt/internal/svc"
 	"jwt/internal/types"
@@ -34,11 +34,11 @@ func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err erro
 	if err != nil {
 		return nil, errors.New("用户名或密码错误")
 	}
-	if !commom.CheckPassword(req.Password, user.Password) {
+	if !common.CheckPassword(req.Password, user.Password) {
 		return nil, errors.New("用户名或密码错误")
 	}
-	accessToken, _ := commom.GenerateAccessToken(l.svcCtx.Config.RefreshSecret, user.Id, "admin")
-	refreshToken, _ := commom.GenerateRefreshToken(l.svcCtx.Config.RefreshSecret, user.RefreshToken, user.Id)
+	accessToken, _ := common.GenerateAccessToken(l.svcCtx.Config.RefreshSecret, user.Id, "admin")
+	refreshToken, _ := common.GenerateRefreshToken(l.svcCtx.Config.RefreshSecret, user.RefreshToken, user.Id)
 
 	return &types.LoginResp{
 		Id:           user.Id,

@@ -5,7 +5,7 @@ package logic
 
 import (
 	"context"
-	"jwt/commom"
+	"jwt/common"
 	"jwt/internal/svc"
 	"jwt/internal/types"
 
@@ -30,8 +30,8 @@ func (l *RefreshTokenLogic) RefreshToken(req *types.RefreshReq) (resp *types.Log
 	// todo: add your logic here and delete this line
 	user, _ := l.svcCtx.UserModel.FindOne(l.ctx, req.Id)
 
-	accessToken, err := commom.GenerateAccessToken(l.svcCtx.Config.RefreshSecret, user.Id, "admin")
-	refreshToken, _ := commom.GenerateRefreshToken(l.svcCtx.Config.RefreshSecret, req.RefreshToken, req.Id)
+	accessToken, err := common.GenerateAccessToken(l.svcCtx.Config.RefreshSecret, user.Id, "admin")
+	refreshToken, _ := common.GenerateRefreshToken(l.svcCtx.Config.RefreshSecret, req.RefreshToken, req.Id)
 
 	return &types.LoginResp{
 		Id:           user.Id,
