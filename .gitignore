@@ -18,9 +18,10 @@
 *.dylib
 *.test
 *.out
-hello/hello
-jwt/jwt
-sse/sse
+# 精确到「文件」层级，避免误伤同名源码目录
+/code_http_kaifa/hello/hello
+/jwt/jwt/jwt
+/sse/sse
 
 # ---- 日志与临时文件 ----
 *.log
