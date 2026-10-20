@@ -1,0 +1,31 @@
+# ---- IDE / 本地配置 ----
+.idea/
+.vscode/
+*.iml
+.workbuddy/
+
+# ---- 环境变量与凭据（严禁入库） ----
+.env
+.env.*
+*.pem
+*.key
+
+# ---- Go 编译产物 ----
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+hello/hello
+jwt/jwt
+sse/sse
+
+# ---- 日志与临时文件 ----
+*.log
+.tmp/
+
+# ---- 系统文件 ----
+.DS_Store
+Thumbs.db

@@ -1,0 +1,15 @@
+syntax = "v1"
+
+type HelloReq {
+	Name string `path:"name,options=you|me"`
+}
+
+type HelloReply {
+	Message string `json:"message"`
+}
+
+service hello-api {
+	@handler HelloHandler
+	get /hello/:name (HelloReq) returns (HelloReply)
+}
+

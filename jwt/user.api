@@ -1,0 +1,63 @@
+type LoginReq {
+	Phone    string `json:"phone"`
+	Password string `json:"password"`
+}
+
+type LoginResp {
+	Id           int64  `json:"id"`
+	UserName     string `json:"userName"`
+	Password     string `json:"password"`
+	Age          int    `json:"age"`
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+	ExpiresIn    int64  `json:"expiresIn"`
+}
+
+type RefreshReq {
+	Id           int64  `json:"id"`
+	RefreshToken string `json:"refreshToken"`
+}
+
+service user-api {
+	@handler Login
+	post /login (LoginReq) returns (LoginResp)
+
+	@handler RefreshToken
+	post /user/refresh (RefreshReq) returns (LoginResp)
+}
+
+type ProfileReq {
+	Id int64 `json:"id"`
+}
+
+type ProfileResp {
+	UserName     string `json:"userName"`
+	Password     string `json:"password"`
+	Age          int    `json:"age"`
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+}
+
+type UpdateProfileReq {
+	Id int64 `json:"id"`
+}
+
+type UpdateProfileResp {
+	UserName     string `json:"userName"`
+	Password     string `json:"password"`
+	Age          int    `json:"age"`
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+}
+
+@server (
+	jwt: Auth
+)
+service user-api {
+	@handler GetProfile
+	get /user/profile (ProfileReq) returns (ProfileResp)
+
+	@handler UpdateProfile
+	put /user/profile (UpdateProfileReq) returns (UpdateProfileResp)
+}
+

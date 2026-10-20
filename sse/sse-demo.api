@@ -1,0 +1,22 @@
+syntax = "v1"
+
+type (
+	SseReq {
+		Body string `json:"body"`
+	}
+	SseResp {
+		Msg string `json:"msg"`
+	}
+)
+
+@server (
+	sse: true
+)
+service sse {
+	@handler sse
+	post /sse/with/req (SseReq) returns (SseResp)
+
+	@handler sseresp
+	post /sse/without/resp returns (*SseResp)
+}
+
