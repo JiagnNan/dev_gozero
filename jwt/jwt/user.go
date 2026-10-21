@@ -26,7 +26,12 @@ func main() {
 	server := rest.MustNewServer(c.RestConf)
 	defer server.Stop()
 
-	ctx := svc.NewServiceContext(c)
+	// TODO: 接入 GORM 后传入真实仓储，例如：
+	//   db, _ := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	//   ctx := svc.NewServiceContext(c, model.NewUserModel(db))
+	// 目前传 nil，login / profile 等依赖 UserModel 的接口会 panic，
+	// 但 logout（纯 Redis 操作）链路可独立运行与验证。
+	ctx := svc.NewServiceContext(c, nil)
 	handler.RegisterHandlers(server, ctx)
 
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)

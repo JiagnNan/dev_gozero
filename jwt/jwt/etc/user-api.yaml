@@ -7,3 +7,10 @@ Auth:
   AccessExpire: 86400        # Access Token 有效期：24 小时
 RefreshSecret: "another-random-secret"
 RefreshExpire: 604800        # Refresh Token 有效期：7 天
+
+# JWT 撤销名单（登出黑名单）存放位置
+# 本地 sc-Redis 容器映射在 6381；若改用标准 Redis 请改为 127.0.0.1:6379
+Redis:
+  Host: 127.0.0.1:6381
+  Type: node
+  Pass: ""

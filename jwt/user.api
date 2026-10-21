@@ -50,6 +50,16 @@ type UpdateProfileResp {
 	RefreshToken string `json:"refreshToken"`
 }
 
+type LogoutReq {
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+}
+
+type MesageResp {
+	Code   int    `json:"code" form:"code"`
+	Mesage string `json:"mesage" form:"mesage"`
+}
+
 @server (
 	jwt: Auth
 )
@@ -59,5 +69,8 @@ service user-api {
 
 	@handler UpdateProfile
 	put /user/profile (UpdateProfileReq) returns (UpdateProfileResp)
+
+	@handler Logout
+	post /user/logout (LogoutReq) returns (MesageResp)
 }
 

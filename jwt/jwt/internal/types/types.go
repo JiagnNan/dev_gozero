@@ -18,6 +18,16 @@ type LoginResp struct {
 	ExpiresIn    int64  `json:"expiresIn"`
 }
 
+type LogoutReq struct {
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+}
+
+type MesageResp struct {
+	Code   int    `json:"code" form:"code"`
+	Mesage string `json:"mesage" form:"mesage"`
+}
+
 type ProfileReq struct {
 	Id int64 `json:"id"`
 }

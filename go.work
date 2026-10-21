@@ -1,0 +1,9 @@
+go 1.24.4
+
+// dev 下三个独立的 Go module，用 go.work 统一成工作区：
+// GoLand 打开 dev 目录即可同时索引三者，不必逐个 "Load Go Modules"。
+use (
+	./code_http_kaifa/hello
+	./jwt/jwt
+	./sse
+)
