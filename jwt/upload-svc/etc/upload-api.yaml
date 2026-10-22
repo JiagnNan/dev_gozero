@@ -1,0 +1,10 @@
+Name: upload-api
+Host: 0.0.0.0
+Port: 8888
+
+# go-zero 的 RestConf.MaxBytes 默认只有 1MB（1048576），
+# 不改这一行，传 2MB 的图片就会被框架直接拒绝，连 handler 都进不来。
+MaxBytes: 67108864   # 64 MB
+
+# 文件落盘目录，相对进程启动目录（upload-svc）
+UploadDir: ./uploads

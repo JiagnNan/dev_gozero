@@ -1,9 +1,14 @@
 go 1.24.4
 
-// dev 下三个独立的 Go module，用 go.work 统一成工作区：
-// GoLand 打开 dev 目录即可同时索引三者，不必逐个 "Load Go Modules"。
+// dev 下的独立 Go module 统一为工作区，GoLand 打开 dev 即可同时索引。
+//
+// 重要：在 workspace 内直接跑 goctl api go 会被 goctl 自动执行 `go work use`，
+// 且它写入的路径基准可能出错（实测会写成 ./jwt/api/xxx 而实际目录是 ./jwt/xxx），
+// 一旦 go.work 指向不存在的目录，后续所有 go 命令都会失败。
+// 因此新建模块时请先把 go.work 临时改名，生成完成后再回来手动添加 use 条目。
 use (
 	./code_http_kaifa/hello
 	./jwt/jwt
+	./jwt/upload-svc
 	./sse
 )

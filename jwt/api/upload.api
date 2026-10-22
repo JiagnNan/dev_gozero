@@ -1,0 +1,11 @@
+service upload-api {
+	@handler UploadFile
+	post /upload/file returns (UploadResp)
+}
+
+type UploadResp {
+	Filename string `json:"filename"`
+	Size     int64  `json:"size"`
+	URL      string `json:"url"`
+}
+
